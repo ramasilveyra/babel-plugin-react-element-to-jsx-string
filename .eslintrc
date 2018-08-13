@@ -1,0 +1,14 @@
+{
+  "extends": ["airbnb", "prettier"],
+  "rules": {
+    "no-use-before-define": "off"
+  },
+  "overrides": [
+    {
+      "files": ["test/*.js"],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
+}

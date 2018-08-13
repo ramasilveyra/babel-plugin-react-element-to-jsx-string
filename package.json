@@ -1,0 +1,80 @@
+{
+  "name": "babel-plugin-react-element-to-jsx-string",
+  "version": "1.0.0-beta.0",
+  "description": "Turn a ReactElement into the corresponding JSX string at build time.",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "babel src -d build -s",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "clean": "del ./build",
+    "lint": "eslint .",
+    "precommit": "lint-staged",
+    "prepublish": "yarn run clean && yarn run build",
+    "test-ci-partial": "yarn run test-coverage",
+    "test-ci": "yarn run lint && yarn run test-ci-partial && codecov",
+    "test-coverage": "yarn run jest --coverage",
+    "test": "jest"
+  },
+  "author": {
+    "name": "Ramiro Silveyra d'Avila",
+    "twitter": "ramasilveyra"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=8"
+  },
+  "files": [
+    "build"
+  ],
+  "repository": "git@github.com:ramasilveyra/babel-plugin-react-element-to-jsx-string.git",
+  "keywords": [
+    "babel",
+    "plugin",
+    "react",
+    "jsx"
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-rc.1",
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "@babel/preset-react": "^7.0.0-rc.1",
+    "babel-core": "^7.0.0-0",
+    "babel-jest": "^23.0.0",
+    "babel-plugin-tester": "^5.5.0",
+    "codecov": "^3.0.2",
+    "conventional-changelog-cli": "^2.0.0",
+    "del-cli": "^1.1.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.10.0",
+    "husky": "^0.14.3",
+    "jest": "^23.0.0",
+    "lint-staged": "^7.1.2",
+    "prettier": "^1.13.0",
+    "regenerator-runtime": "^0.11.1"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!**/node_modules/**",
+      "!**/build/**",
+      "!**/coverage/**"
+    ],
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/*.test.js"
+    ]
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --single-quote --print-width 100 --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "@babel/generator": "^7.0.0-rc.1"
+  }
+}
