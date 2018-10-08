@@ -10,12 +10,18 @@ export default function babelPluginReactElementToJsxString({ types: t }, options
     visitor: {
       [visitorNames](path) {
         const jsx = getJSX(t, path);
-        const comment = getComment(path);
-        const name = getName(t, path);
-        const userId = options.id;
-        if (!jsx.has || !comment.has || !name.name) {
+        if (!jsx.has) {
           return;
         }
+        const comment = getComment(path);
+        if (!comment.has) {
+          return;
+        }
+        const name = getName(t, path);
+        if (!name.name) {
+          return;
+        }
+        const userId = options.id;
         const customAssignment = `${NAME}:`;
         const customAssignmentLength = customAssignment.length;
         const customAssignmentIDIndex = comment.value.indexOf(customAssignment);
